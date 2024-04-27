@@ -23,10 +23,23 @@ class MoviesController < ApplicationController
     # Redirect the user back to the /movies URL
   end
 
-  
+  def update
+    the_id = params.fetch("path_id")
+    movie = Movie.find_by({ :id => the_id })
+    update_params = {
+      title: params[:query_title],
+      year: params[:query_year],
+      description: params[:query_description],
+      image: params[:query_image]
+    }.compact_blank
+    movie.update(update_params)
+    redirect_to "/movies/#{the_id}"
+   
+   
+  end
   def delete
     the_id = params.fetch("path_id")
-    contact = Movie.where({ :id => the_id })
+    movie = Movie.find_by({ :id => the_id })
   
     movie.destroy
   

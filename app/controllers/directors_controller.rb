@@ -11,13 +11,29 @@ class DirectorsController < ApplicationController
 
     redirect_to("/directors")
   end 
+
+  def update
+    the_id = params.fetch("path_id")
+    director = Director.find_by({ :id => the_id })
+    update_params = {
+      name: params[:query_name],
+      dob: params[:query_dob],
+      bio: params[:query_bio],
+      image: params[:query_image]
+    }.compact_blank
+    director.update(update_params)
+    redirect_to "/directors/#{the_id}"
+   
+   
+  end
+  
   def delete
     the_id = params.fetch("path_id")
-    contact = Director.where({ :id => the_id })
+    director = Director.find_by({ :id => the_id })
   
     director.destroy
   
-    redirect_to("/director")
+    redirect_to("/directors")
   end
   def index
     matching_directors = Director.all

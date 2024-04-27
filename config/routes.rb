@@ -17,10 +17,14 @@ Rails.application.routes.draw do
   
   post("/insert_movie_record", { :controller => "movies", :action => "create" })
   
+  get("/delete_movie/:path_id", { :controller => "movies", :action => "delete" })
   
-    get("/delete_actor/:path_id", { :controller => "actors", :action => "delete" })
-    post("/delete_movie_record/:path_id", { :controller => "movies", :action => "delete" })
-    post("/delete_director/:path_id", { :controller => "directors", :action => "delete" }) 
-    post '/update_actor/:path_id', to: 'actors#update'
-  
+  get("/delete_actor/:path_id", { :controller => "actors", :action => "delete" })
+ 
+
+  get("/delete_director/:path_id", { :controller => "directors", :action => "delete" }) 
+  post '/update_director/:path_id', to: 'directors#update'
+  post '/update_actor/:path_id', to: 'actors#update'
+  post '/update_movie/:path_id', to: 'movies#update'
+    
 end

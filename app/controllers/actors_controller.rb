@@ -30,11 +30,23 @@ class ActorsController < ApplicationController
   
     redirect_to("/actors")
   end
+
   def update
-    actor = Actor.find(params[:path_id])
-    redirect_to("/actors/")
-  
+    the_id = params.fetch("path_id")
+    actor = Actor.find_by({ :id => the_id })
+    update_params = {
+      name: params[:query_name],
+      dob: params[:query_dob],
+      bio: params[:query_bio],
+      image: params[:query_image]
+    }.compact_blank
+    actor.update(update_params)
+    redirect_to "/actors/#{the_id}"
+   
+   
   end
+  
+ 
   
   def index
     matching_actors = Actor.all

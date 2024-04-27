@@ -6,6 +6,46 @@
   Go back
 </a>
 
+<a href= /delete_movie/<%=@the_movie.id %> > Delete Movie</a>
+
+<form action="/update_movie/<%=@the_movie.id %>" method="post">
+  <div>
+    <label for="title_box">
+      Title
+    </label>
+
+    <input type="text" id="title_box" name="query_title" value = '<%= @the_movie.title %>' >
+  </div>
+
+  <div>
+    <label for="year_box">
+      Year
+    </label>
+
+    <input id="year_box" name="query_year" value='<%= @the_movie.year %>'>
+  </div>
+
+  <div>
+    <label for="description_box">
+      Description
+    </label>
+
+    <textarea id="description_box" name="query_description" rows="3"> <%= @the_movie.description %> </textarea>
+  </div>
+
+  <div>
+    <label for="image_box">
+      Image
+    </label>
+
+    <input type="text" id="image_box" name="query_image" value="<%=@the_movie.image%>"> 
+  </div>
+
+  <button>
+    Update movie
+  </button>
+</form>
+
 <hr>
 
 <dl>
